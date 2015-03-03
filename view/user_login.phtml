@@ -1,0 +1,37 @@
+            <form action="" method="post" id="loginform">
+                <table>
+                    <tr>
+                        <td>
+                            Email:
+                        </td>
+                        <td>
+                            <input type="text" name="email" id="email">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Password:
+                        </td>
+                        <td>
+                            <input type="text" name="password">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: right">
+                            <input class="button" type="submit" value="Send" id="submit">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+                <a href="/user/register">I want register!</a>
+            <br>
+<script type="text/javascript">
+    $('#submit').click(function(){
+        if(isValidEmail($('#email').val))
+        {
+            $('#loginform').submit();
+        }
+        else
+            $('#email').css({'backgroundColor': 'red'});
+    })
+</script>

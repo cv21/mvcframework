@@ -1,0 +1,19 @@
+<?php
+    foreach($this->found as $searchResult){?>
+        <div class="search_result">
+            <table>
+                <tr valign="top">
+                    <td>
+                        <a href="viewuser?id=<?=$searchResult['id']?>">
+                            <img width="80" height="80" src="<?=AVATARS_URL . $searchResult['avatar']?>.quad.jpg" class="all_radius light_shadow">
+                        </a>
+                    </td>
+                    <td style="padding: 10px;">                        
+                        <b><?=$searchResult['firstname']?> <?=$searchResult['lastname']?></b>
+                        <br>
+                        <?=$searchResult['birthday']?>.<?=$searchResult['birthmonth']?>.<?=$searchResult['birthyear']?>                        
+                    </td>
+                </tr>
+            </table>
+        </div>
+    <?}?>

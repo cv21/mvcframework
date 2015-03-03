@@ -1,0 +1,68 @@
+<?=(isSet($this->text) ? "<span style='color:red'>" . $this->text ."</span>" : "")?>
+            <form method="post" action="" id="registerform">
+                <table>
+                    <tr>
+                        <td>
+                            Firstname
+                        </td>
+                        <td>
+                            <input type="text" name="firstname" value="<?=(isSet($this->regnick) ? $this->regnick : "")?>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Lastname
+                        </td>
+                        <td>
+                            <input type="text" name="lastname" value="<?=(isSet($this->regemail) ? $this->regemail : "")?>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Gender
+                        </td>
+                        <td>
+                            <select name="gender">
+                                <option value="m">Male</option>
+                                <option value="f">Female</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Date of birth
+                        </td>
+                        <td>
+                            <input id="datepicker" type="text" name="birthday">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Email
+                        </td>
+                        <td>
+                            <input type="text" name="email" id="email">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Password
+                        </td>
+                        <td>
+                            <input type="text" name="password">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: right">
+                            <input class="button" type="submit" value="Send" id="submit">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <br>
+<script type="text/javascript">
+    $(function() {
+        $( "#datepicker" ).datepicker({ changeYear: true, changeMonth: true, yearRange: "1920:2010", showAnim: "slideDown"});
+    });
+</script>
+

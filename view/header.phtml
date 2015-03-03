@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--Write some here-->
+    <title>
+        <?=$this->getTitle()?>
+    </title>
+    <link type="text/css" rel="stylesheet" href="<?=INDEX_URL?>/view/styles/styles.css">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,400italic' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="<?=INDEX_URL?>/view/js/script.js"></script>
+    <?=$this->getLinks()?>
+</head>
+<body>
+<center>
+    <div id="main" class="bottom_radius">
+        <div id="headline">
+            <a href="/"><img src="<?=INDEX_URL?>/view/images/header.jpg" style="float: left; border-right-color: #606060; border-right-style: solid; border-right-width: 2px;" width="200px" height="60px"></a>
+            <div style="padding: 14px; float: left;"><?=$this->getTitle()?></div>
+            <a style="font-size: 21px;; float: right; margin: 14px; padding-right: 28px;" href="/user"><?php echo (!empty($this->user)) ? ($this->user->getFirstname() . " " . $this->user->getLastname()) : '' ?></a>
+        </div>
+        <div id=content>

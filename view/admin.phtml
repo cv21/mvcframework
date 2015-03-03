@@ -1,0 +1,75 @@
+<table width="960px">
+    <tr bgcolor="#6495ed" style="color: white">
+        <td width="3%">
+            id
+        </td>
+        <td width="5%">
+            firstname
+        </td>
+        <td width="5%">
+            lastname
+        </td>
+        <td width="2%">
+            gndr
+        </td>
+        <td width="3%">
+            bday
+        </td>
+        <td width="3%">
+            avatar
+        </td>
+        <td>
+            email
+        </td>
+        <td>
+            password
+        </td>
+        <td>
+            status
+        </td>
+        <td>
+            Del
+        </td>
+    </tr>
+<?php
+    $colorCounter = 0;
+    foreach($this->users as $user)
+    {
+        ?>
+        <tr bgcolor="<?=((($colorCounter % 2) == 0) ? "#CCC" : "transparent")?>">
+            <td>
+                <?=$user['id']?>
+            </td>
+            <td>
+                <?=$user['firstname']?>
+            </td>
+            <td>
+                <?=$user['lastname']?>
+            </td>
+            <td>
+                <?=$user['gender']?>
+            </td>
+            <td>
+                <?=$user['birthday'] . '.' . $user['birthmonth'] . '.' . $user['birthyear']?>
+            </td>
+            <td>
+                <a href="/viewuser?id=<?=$user['id']?>"><img src="<?=AVATARS_URL . ($user['avatar'])?>.small.quad.jpg"></a>
+            </td>
+            <td width="3%">
+                <?=$user['email']?>
+            </td>
+            <td width="3%">
+                <?=$user['password']?>
+            </td>
+            <td width="3%">
+                <?=($user['status']==0) ? "user" : "admin"?>
+            </td>
+            <td width="3%">
+                <a href="/admin?delete=<?=$user['id']?>">x</a>
+            </td>
+        </tr>
+    <?
+        $colorCounter++;
+    }
+?>
+</table>

@@ -1,0 +1,147 @@
+<?=(isSet($this->notice) ? "<span style='color:red'>" . $this->notice ."</span>" : "")?>
+<table width="100%" cellpadding="10px" cellspacing="0px">
+    <tr valign="top">
+        <td width="200px">
+            <div style="float: left;">
+                <?php
+                $avatar = $this->viewUser->getAvatar();
+                if(!empty($avatar)){?>
+                    <img width="200px" src="<?=AVATARS_URL . $this->viewUser->getAvatar()?>.jpg" alt="Your avatar" style="float: left; box-shadow: 0 0 5px #AAA">
+                    <?}else{?>
+                    <img width="200px" src="<?=AVATARS_URL . "noavatar.jpg"?>" alt="You have no avatar">
+                    <?}?>
+                <br>
+            </div>
+        </td>
+        <td>
+            <form method="post" action="">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            Firstname
+                        </td>
+                        <td>
+                            <?=$this->viewUser->getFirstname()?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Lastname
+                        </td>
+                        <td>
+                            <?=$this->viewUser->getLastname()?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Gender
+                        </td>
+                        <td>
+                            <?=($this->viewUser->getGender() == 'm') ? "male": "female" ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Birthday
+                        </td>
+                        <td>
+                            <?=$this->viewUser->getBirthDay() . "." . $this->viewUser->getBirthMonth() . "." . $this->viewUser->getBirthYear()?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Email
+                        </td>
+                        <td>
+                            <?=$this->viewUser->getEmail()?>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <form action="message/send" method="post">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <input type="hidden" name="to" value="<?=$this->viewUser->getId()?>">
+                            <textarea id="msg_textarea" name="text" style="overflow: hidden;"></textarea>
+                        </td>
+                        <td valign="bottom">
+                            <input type="submit" class="button" value="Send" style="width: 90px; height: 35px; margin-bottom: 5px;">
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <br>
+            </form>
+            <div id="messages_wrapper">
+            <?php foreach($this->messages as $message){?>
+                <div class="message" style="background-color: <?=($message['readed'] == 0) ? "#D9D9D9" : ""?>">
+                    <img style="float: left;" src="<?=AVATARS_URL . (($message['from'] == $this->viewUser->getId()) ? $this->viewUser->getAvatar() : $this->user->getAvatar())?>.small.quad.jpg">
+                    <div style="width: 430px; margin-left: 10px; float: left;">
+                        <b><?=(($message['from'] == $this->viewUser->getId()) ? $this->viewUser->getFirstname() : $this->user->getFirstname())?></b><br>
+                        <?=$message['text']?><br>
+                        <div style="font-size: 10px; color:#AAA"><?=$message['time']?></div>
+                    </div>
+                    <div class="actions" style="float: right; cursor: pointer;">
+                        <div class="delete_msg">
+                            <img width="12px" height="12px" src="<?=INDEX_URL?>/view/images/del.png">
+                            <input type="hidden" value="<?=$message['id']?>">
+                        </div>
+                    </div>
+                </div>
+            <?}?>
+            </div>
+        </td>
+    </tr>
+</table>
+<script type="text/javascript">
+
+    // для удаления сообщений
+
+    var delMsg;
+
+    // для ajax пагинации
+
+    var limit = 5;
+
+    $('.delete_msg').click(delMsgFunc = function(){
+        delMsg = $(this).parent().parent();
+        ajaxSend('/ajax/deleteMessage', 'id=' + $(this).find('input[type=hidden]').val(), hideDeletedMessage, true);
+    });
+
+    function hideDeletedMessage(xhr, status)
+    {
+        if((status == 'success') && (xhr.responseText.slice(0,2) == 'OK'))
+        {
+            $(delMsg).fadeOut(200);
+        }
+    }
+
+    $('#msg_textarea').keyup(function(){
+        $('#msg_textarea').animate({'height' : document.getElementById('msg_textarea').scrollHeight - 5 + "px"}, 40);
+    });
+
+    $(window).scroll(wsListener = function(){
+        if(100 > ($(document).height() - $(window).height() - $(window).scrollTop()))
+        {
+            ajaxSend('ajax/getMessages','viewuser=<?=$this->viewUser->getId()?>&ll=' + limit + '&rl=5', attachMessages, false);
+        }
+    });
+
+    function attachMessages(xhr, status)
+    {
+        if(status == 'success')
+        {
+            if(xhr.responseText != '')
+            {
+                limit +=5;
+                $('#messages_wrapper').append(xhr.responseText);
+                $('.delete_msg').click(delMsgFunc);
+            }
+            else
+            {
+                $(window).unbind("scroll");
+            }
+        }
+    }
+</script>

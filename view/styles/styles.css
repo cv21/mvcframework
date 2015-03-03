@@ -1,0 +1,265 @@
+#main
+{
+    width: 800px;
+    box-shadow: 0 0 25px #AAA;
+    background-repeat: repeat-y;
+    background-color: #f5f5f5;
+    border-width: 1px;
+    border-color: #777777;
+    overflow: hidden;
+    border-style: solid;
+    margin-top: -20px;
+}
+
+body
+{
+    background-image: url('http://school.loc/view/images/background.jpg');
+    background-color: #DDD;
+    background-size: 100% 100%;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px;
+}
+
+textarea
+{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px;
+}
+
+#headline
+{
+    margin-top: 27px;
+    width: 800px;
+    padding-left: 20px;
+    box-shadow: 0 7px 7px #DDD;
+    height: 60px;
+    color: #606060;
+    text-align: left;
+    font-size: 25px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.bottom_radius
+{
+    border-bottom-left-radius:3px;
+    -webkit-border-bottom-left-radius:6px;
+    -moz-border-bottom-left-radius:6px;
+    -khtml-border-bottom-left-radius:6px;
+
+    border-bottom-right-radius:3px;
+    -webkit-border-bottom-right-radius:6px;
+    -moz-border-bottom-right-radius:6px;
+    -khtml-border-bottom-right-radius:6px;
+}
+
+.all_radius
+{
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+#content
+{
+    padding:20px;
+}
+
+
+button
+{
+    font-family: 'Droid Sans', sans-serif;
+    padding: 4px;
+}
+
+a
+{
+    color: #000;
+    text-decoration: none;
+}
+
+a:hover
+{
+    color: #888;
+    text-decoration: underline;
+}
+
+.comment_panel
+{
+    float: right;
+    font-size: 12px;
+    margin: 5px;
+    color:#888;
+    cursor: pointer;
+    text-align: right;
+}
+
+.comment_panel:hover
+{
+    text-decoration: underline;
+}
+
+.star
+{
+    background-image: url('http://school.loc/view/images/star.png');
+    background-size: 100% 100% ;
+    width: 20px;
+    height: 20px;
+    opacity: 0.1;
+    float: right;
+}
+
+.star:hover
+{
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.message
+{
+    overflow:hidden;
+    text-align: left;
+    padding: 10px;
+    border-top-width: 1px;
+    border-top-color: #DDD;
+    border-top-style: solid;
+}
+
+.button
+{
+    border-style:solid;
+    border-color:#555;
+    border-radius:20px;
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:4px;
+    padding-bottom:4px;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    -khtml-border-radius:5px;
+    color: #f5f5f5;
+    box-shadow: 0 0 3px rgb(190,190,190);
+    background-image: linear-gradient(bottom, rgb(86,86,86) 0%, rgb(134,134,134) 79%);
+    background-image: -o-linear-gradient(bottom, rgb(86,86,86) 0%, rgb(134,134,134) 79%);
+    background-image: -moz-linear-gradient(bottom, rgb(86,86,86) 0%, rgb(134,134,134) 79%);
+    background-image: -webkit-linear-gradient(bottom, rgb(86,86,86) 0%, rgb(134,134,134) 79%);
+    background-image: -ms-linear-gradient(bottom, rgb(86,86,86) 0%, rgb(134,134,134) 79%);
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(86,86,86)),
+        color-stop(0.79, rgb(134,134,134))
+    );
+}
+
+
+.button:hover
+{
+    background-image: linear-gradient(bottom, rgb(100,100,100) 0%, rgb(164,164,164) 79%);
+    background-image: -o-linear-gradient(bottom, rgb(100,100,100) 0%, rgb(164,164,164) 79%);
+    background-image: -moz-linear-gradient(bottom, rgb(100,100,100) 0%, rgb(164,164,164) 79%);
+    background-image: -webkit-linear-gradient(bottom, rgb(100,100,100) 0%, rgb(164,164,164) 79%);
+    background-image: -ms-linear-gradient(bottom, rgb(100,100,100) 0%, rgb(164,164,164) 79%);
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(100,100,100)),
+        color-stop(0.79, rgb(164,164,164))
+    );
+    border-color:#555;
+    cursor:pointer;
+}
+
+
+.button:active
+{
+    background-image: linear-gradient(bottom, rgb(100,100,100) 0%, rgb(124,124,124) 79%);
+    background-image: -o-linear-gradient(bottom, rgb(100,100,100) 0%, rgb(124,124,124) 79%);
+    background-image: -moz-linear-gradient(bottom, rgb(100,100,100) 0%, rgb(124,124,124) 79%);
+    background-image: -webkit-linear-gradient(bottom, rgb(100,100,100) 0%, rgb(124,124,124) 79%);
+    background-image: -ms-linear-gradient(bottom, rgb(100,100,100) 0%, rgb(124,124,124) 79%);
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(100,100,100)),
+        color-stop(0.79, rgb(124,124,124))
+    );
+    box-shadow: inset 0 2px 4px #444;
+    cursor:pointer;
+}
+
+input
+{
+    font-family: 'Ubuntu', sans-serif;
+    padding: 3px;
+}
+
+#ui-datepicker-div
+{
+    background-color: #ffffff;
+    font-size: 14px;
+    width: 212px;
+}
+
+#msg_textarea
+{
+    width: 400px;
+    height: 35px;
+    max-height: 600px;
+    max-width: 400px;
+    min-height: 35px;
+    min-width: 400px;
+
+}
+
+#photowall
+{
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.search_result
+{
+    overflow:hidden;
+    text-align: left;
+    padding: 10px;
+    margin-left: 55px;
+    margin-right: 55px;
+    border-top-width: 1px;
+    border-top-color: #DDD;
+    border-top-style: solid;
+}
+
+#messages_wrapper
+{
+    overflow-y: auto;
+}
+
+.actions
+{
+    font-size: 12px;
+    color: #AAA;
+}
+
+#search
+{
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-color: #CFCFCF;
+    border-style: solid;
+    border-width: 1px;
+    position: relative;
+    margin-left: -10px;
+    width: 100%;
+    height: 100%;
+    background-color: #f3f3f3;
+}
+
+.light_shadow
+{
+    box-shadow: 0 0 3px #AAA;
+}

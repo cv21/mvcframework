@@ -1,0 +1,104 @@
+<?=(isSet($this->notice) ? "<span style='color:red'>" . $this->notice ."</span>" : "")?>
+<table width="100%">
+    <tr valign="top" width="200px">
+        <td width="200px">
+            <div style="float: left;">
+                <?php
+                    $avatar = $this->user->getAvatar();
+                    if(!empty($avatar)){?>
+                        <img width="200px" src="<?=AVATARS_URL . $this->user->getAvatar()?>.jpg" alt="Your avatar" style="float: left; box-shadow: 0 0 5px #AAA">
+                    <?}else{?>
+                        <img width="200px" src="<?=AVATARS_URL . "noavatar.jpg"?>" alt="You have no avatar" style="float: left; box-shadow: 0 0 5px #AAA">
+                    <?}?>
+                    <br>
+                <div>
+                    <form action="user/changeavatar" method="post" enctype="multipart/form-data">
+                        <input type="file" name="avatar" accept="image/*,image/jpeg"><br>
+                        <input type="submit" class="button" style="width: 200px" value="Change avatar">
+                    </form>
+                </div>
+                <?=(isSet($this->text) ? "<span style='color:red'>" . $this->text ."</span>" : "")?>
+                <a href="/user/logout"><input type="button" class="button" style="width: 200px" value="Logout"></a>
+                <?if($this->user->getStatus() == 1){?>
+                    <a href="/admin"><input type="button" class="button" style="width: 200px" value="Administration"></a>
+                <?}?>
+            </div>
+        </td>
+        <td>
+            <form method="post" action="">
+                <table width="100%">
+                    <tr>
+                        <td width="50%">
+                            Firstname
+                        </td>
+                        <td>
+                            <input disabled="1" type="text" value="<?=$this->user->getFirstname()?>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Lastname
+                        </td>
+                        <td>
+                            <input disabled="1" type="text" value="<?=$this->user->getLastname()?>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Gender
+                        </td>
+                        <td>
+                            <input disabled="1" type="text" value="<?=($this->user->getGender() == 'm') ? "male": "female" ?>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Birthday
+                        </td>
+                        <td>
+                            <input disabled="1" type="text" value="<?=$this->user->getBirthDay() . "." . $this->user->getBirthMonth() . "." . $this->user->getBirthYear()?>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Email
+                        </td>
+                        <td>
+                            <input disabled="1" type="text" value="<?=$this->user->getEmail()?>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Password:
+                        </td>
+                        <td>
+                            <input disabled="1" type="text" placeholder="<?=$this->user->getPassword()?>">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <br>
+            <?if(!empty($this->newMessages)){?>
+            <div id="messages_wrapper">
+                <?php foreach($this->newMessages as $message){?>
+                <div class="message" style="background-color: <?=($message['readed'] == 0) ? "#D9D9D9" : ""?>">
+                    <a href="/viewuser?id=<?=$message['from']['id']?>">
+                    <img style="float: left;" src="<?=AVATARS_URL . ($message['from']['avatar'])?>.small.quad.jpg">
+                    </a>
+                    <div style="width: 420px; margin-left: 10px; float: right;">
+                        <b><?=($message['from']['firstname'])?></b><br>
+                        <?=$message['text']?><br>
+                        <div style="font-size: 10px; color:#AAA"><?=$message['time']?></div>
+                    </div>
+                </div>
+                <?}?>
+            </div>
+            <?}else{?>
+                You have no new messages
+            <?}?>
+        </td>
+    </tr>
+</table>
+<script type="text/javascript">
+    $('.message').animate({'backgroundColor':'#f5f5f5'}, 5000);
+</script>

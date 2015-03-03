@@ -1,0 +1,16 @@
+<?php foreach($this->messages as $message){?>
+<div class="message" style="background-color: <?=($message['readed'] == 0) ? "#D9D9D9" : ""?>">
+    <img style="float: left;" src="<?=AVATARS_URL . (($message['from'] == $this->viewUser->getId()) ? $this->viewUser->getAvatar() : $this->user->getAvatar())?>.small.quad.jpg">
+    <div style="width: 430px;; margin-left: 10px; float: left;">
+        <b><?=(($message['from'] == $this->viewUser->getId()) ? $this->viewUser->getFirstname() : $this->user->getFirstname())?></b><br>
+        <?=$message['text']?><br>
+        <div style="font-size: 10px; color:#AAA"><?=$message['time']?></div>
+    </div>
+    <div class="actions" style="float: right; cursor: pointer;">
+        <div class="delete_msg">
+            <img width="12px" height="12px" src="<?=INDEX_URL?>/view/images/del.png">
+            <input type="hidden" value="<?=$message['id']?>">
+        </div>
+    </div>
+</div>
+<?}?>

@@ -1,0 +1,89 @@
+<?php if(isSet($this->user)){?>
+    Did you meet them?
+<?} else {?>
+    <a href="user/login"><input class="button" type="button" value="Log in!"></a>
+<?}?>
+<br>
+<br>
+
+<div id="photowall">
+    <?foreach($this->randomUsers as $randomUser){?>
+    <a href="/viewuser?id=<?=$randomUser['id']?>"><img src="<?=AVATARS_URL . $randomUser['avatar']?>.small.quad.jpg"></a>
+    <?}?>
+</div>
+<?php if(isSet($this->user)){?>
+<div id="search" class="all_radius">
+    <div id="searchblock" style="margin: 7px;">
+        Name <input id="name" type="text" class="searchblock">
+        Gender
+        <select class="searchblock" id="gender">
+            <option value="">
+                any
+            </option>
+            <option value="m">
+                male
+            </option>
+            <option value="f">
+                female
+            </option>
+        </select>
+        maxAge <input id="age" type="text" style="width: 40px;" class="searchblock">
+    </div>
+    <div id="searchresults">
+    </div>
+</div>
+<?}?>
+<script>
+    var limit = 5; // хранит количество уже показанных сообщений (нужно для ajax-загрузки сообщений)
+
+    $('.searchblock').change(function(){
+        limit = 5;
+        ajaxSend("ajax/getSearchResults", "name=" + $('#name').val() + "&gender=" + $('#gender').val() + "&age=" + $('#age').val() + '&ll=0&rl=' + limit, showSearchResults, true)
+    });
+
+    function showSearchResults(xhr, status)
+    {
+        if(status = 'success')
+        {
+            if(xhr.responseText != '')
+            {
+                $('#searchresults').fadeOut(200,function(){
+                    $('#searchresults').html(xhr.responseText);
+                });
+                $('#searchresults').fadeIn(200);
+                $(window).scroll(wsListener);
+            }
+            else
+            {
+                $('#searchresults').fadeOut(200,function(){
+                    $('#searchresults').html("No results");
+                });
+                $('#searchresults').fadeIn(200);
+            }
+
+        }
+    }
+
+    $(window).scroll(wsListener = function(){
+        if(100 > ($(document).height() - $(window).height() - $(window).scrollTop()))
+        {
+            ajaxSend('ajax/getSearchResults','name=' + $('#name').val() + '&gender=' + $('#gender').val() + '&age=' + $('#age').val() + '&ll=' + limit + '&rl=' + 5, attachSearchResults, false);
+        }
+    });
+
+    function attachSearchResults(xhr, status)
+    {
+        if(status == 'success')
+        {
+            if(xhr.responseText != '')
+            {
+                limit +=5;
+                $('#searchresults').append(xhr.responseText);
+            }
+            else
+            {
+                $(window).unbind("scroll");
+            }
+        }
+    }
+</script>
